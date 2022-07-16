@@ -1,0 +1,32 @@
+
+    {% for cat in cats%}
+        <div class="col-12 main_cat_plas" >
+            <div class="row main_cat_header_pl">
+             <a href="{% url 'categories-id' cat.cat_data.id %}" class="main-cat-header">{{cat.cat_data.name}} ({{cat.count}})</a>
+            </div>
+            <div class="row main_cat">
+            {% for channel_data in cat.data%}
+                <div class="col-6 main_cat_plas" >
+                    <div class="row">
+                        <div class="col-2">
+                           <img height="60" src="/media/{{channel_data.logo}}">
+                        </div>
+                        <div class="col-10">
+                            <div class="row main_cat_head" >
+                                <a class="tgm_link" href="{% url 'channel-id' channel_data.id %}">@{{channel_data.name|truncatechars:20}}</a>
+                            </div>
+                            <div class="row main_cat_description">
+                                {{channel_data.description}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+            </div>
+            <div class="row main_cat_all_channel">
+                     <a class="main_cat_all_channel_link" href="{% url 'categories-id' cat.cat_data.id %}">все каналы</a>
+            </div>
+        </div>
+    {% endfor %}

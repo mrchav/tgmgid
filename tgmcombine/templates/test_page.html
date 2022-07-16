@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block maincontent%}
+{{date}}<br><br>
+{{test}}<br><br>
+
+{% for obj in object_list %}
+    {{obj.id}}) {{obj}}|<br>
+{% endfor %}
+{% endblock %}

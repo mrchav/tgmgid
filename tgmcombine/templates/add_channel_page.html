@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block maincontent%}
+<div class="row">
+        <div class="content">
+            <h1> Добавьте свой телеграм каталог</h1>
+        </div>
+</div>
+<div class="row form_message">
+    {{add_message}}
+</div>
+<div class="row">
+    <div class="content">
+        <form action="/addchannel/" method="post">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+            <input type="submit" value="Добавить каталог">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block maincontent%}
+<h1> {{category}}</h1>
+<div class="row">
+    {% for channel_data in channels %}
+    <div class="col-6 main_cat_plas" >
+        <div class="row">
+            <div class="col-2">
+               <img height="60" src="/media/{{channel_data.logo}}">
+            </div>
+            <div class="col-10">
+                <div class="row main_cat_head" >
+                    <a class="tgm_link" href="{% url 'channel-id' channel_data.id %}">@{{channel_data.name|truncatechars:20}}</a>
+                </div>
+                <div class="row main_cat_description">
+                    <div class="row">
+                        {{channel_data.description|truncatechars:150}}
+                            <a class="tgm_link" href="{% url 'channel-id' channel_data.id %}">&nbsp;подробнее>></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor%}
+</div>
+<div class="row paginator">
+        <div class="col-4 paginator-left">
+                {% if channels.has_previous %}
+                    <a href="?page=1">первая страница</a> &nbsp;&nbsp;&nbsp;
+                    <a href="?page={{channels.previous_page_number}}">&laquo;&laquo; предыдушая</a>
+                {% endif %}
+
+        </div>
+        <div class="col-4 paginator-current">
+                <span class="">
+                     страница {{channels.number}}
+                </span>
+        </div>
+        <div class="col-4 paginator-right">
+
+                    {% if channels.has_next %}
+                        <a href="?page={{channels.next_page_number}}">следующая &raquo;&raquo;</a> &nbsp;&nbsp;&nbsp;
+                        <a href="?page={{channels.paginator.num_pages}}"> последняя страница   {{ channels.paginator.num_pages }} </a>
+                    {% endif %}
+
+        </div>
+
+
+</div>
+{% endblock %}

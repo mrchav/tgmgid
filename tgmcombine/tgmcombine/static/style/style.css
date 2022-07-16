@@ -1,0 +1,185 @@
+:root {
+  --color-primary: #235ad1;
+  --color-text: #111;
+  --color-header: #111;
+  --color-header2: #111;
+  --color-tgm_link: #333;
+  --color-channel-link-more: #555;
+  --color-background_nav: #ececec;
+  --color-background1: #FBFDFB;
+  --color-background_header: #ececec;
+}
+
+h1{
+    color: var(--color-header);
+    margin: 60px 0;
+}
+
+h2{
+    color: var(--color-header);
+    margin: 30px 0;
+}
+
+h4 {
+
+}
+
+a{
+    color:#333;
+}
+
+.text-center {
+  text-align: center;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.con_btn_channel{
+    margin: 60px 0;
+
+}
+
+.navibar{
+    height: 50px;
+    background-color: var(--color-background_nav);
+}
+
+.navi-link{
+    color: #444;
+    font-weight: 500;
+}
+
+a:hover{
+  color: #07517E;
+}
+
+.header_menu{
+ text-align:right;
+}
+.main_cat_header_pl{
+        background-color: var(--color-background_header);
+
+}
+
+.header_menu_ul{
+    margin:10px;
+}
+.channel_logo{
+    padding: 10px;
+}
+.header_menu_li{
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}
+.main_cat{
+    padding: 5px;
+}
+
+.main_cat_plas{
+
+    font-size: 22px;
+    color: #777;
+    height: auto;
+    margin: 5px 0px;
+    padding: 5px;
+    border: 0px solid;
+}
+.main_cat_head{
+    font-size: 18px;
+    color: var(--color-header2);
+    }
+.cat_subs{
+    font-size: 16px;
+    color: var(--color-header2);
+
+}
+.main_cat_description{
+    font-size: 14px;
+    color: #777;
+    height: auto;
+    }
+
+.tgm_link{
+    color: var(--color-tgm_link);
+    font-style: bold;
+}
+.tgm_link_cont{
+
+}
+.btn-w100{
+width: 100%;
+
+}
+
+.main_cat_plas_count{
+    text-align:right;
+    font-size: 16px;
+    height: auto;
+}
+.paginator{
+    width:100%;
+}
+
+.alleft{
+    text-align:left;
+}
+
+.allright{
+    text-align:right;
+}
+.allcenter{
+    text-align:center;
+}
+
+
+.paginator-left{
+    text-align:right;
+}
+.paginator-current{
+    text-align:center;
+}
+
+.site_logo{
+    margin: 1px;
+    height: 50px;
+}
+.maincontent{
+    min-height: 1000px;
+}
+
+.main-cat-header{
+    margin-left: 10px;
+    color: var(--color-header2);
+}
+
+.channel-cat-header{
+    font-size: 1.2rem;
+    font-weight: 400;
+    height: 30px;
+    color: var(--color-header2);
+}
+
+.main_cat_all_channel{
+    margin-right:10px;
+    float: right;
+    color: #333 ;
+    text-align:right;
+
+}
+.main_cat_all_channel_link{
+    color: #333 ;
+    font-size: 16px;
+    font-style: italic;
+    text-align:right;
+}
+.form_message{
+    height: 30px;
+    margin: 30px 0;
+    padding: 30px 0;
+}
+
+.footer{
+    height: 50px;
+}

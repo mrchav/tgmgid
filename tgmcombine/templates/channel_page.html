@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+{% block maincontent%}
+<div class="container">
+
+        <div class="row">
+            <div class="container">
+                <div class="row">
+
+                        <h1>{{channel.name}}</h1>
+                </div>
+
+                <div class="row ">
+                        <div class="col-1 channel_logo">
+                              <img height="60" src="/media/{{channel.logo}}">
+                        </div>
+                        <div class="col-11">
+                                <div class="container">
+                                        <div class="row">
+                                                <div class="col-4">
+                                                        <a class="tgm_link" href="{{channel.tgm_real_link}}" target="_blank">
+                                                                {{channel.tgmlink}}</a>
+                                                </div>
+                                                <div class="col-4">
+                                                             <a href="{% url 'categories-id' category.id %}"
+                                                        class="main-cat-header">{{category|lower}}</a>
+                                                </div>
+                                                <div class="col-4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                        </svg>
+                                                        {{channel.subs|intcomma}}
+
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="row">
+                                                        <div class="col-12">
+                                                                {{channel.description}}
+                                                        </div>
+                                                </div>
+
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row con_btn_channel">
+                <a class="btn btn-primary btn-w100"  target="_blank" href="{{channel.tgm_real_link}}">открыть канал</a>
+        </div>
+        <div class="row">
+                <h2> Похожие каналы</h2>
+        </div>
+        <div class="row">
+                    {% for channel_data in similarchannels %}
+                    <div class="col-6 main_cat_plas" >
+                        <div class="row">
+                            <div class="col-2">
+                               <img height="60" src="/media/{{channel_data.logo}}">
+                            </div>
+                            <div class="col-10">
+                                <div class="row main_cat_head" >
+                                    <a class="tgm_link" href="{% url 'channel-id' channel_data.id %}">@{{channel_data.name|truncatechars:40}}</a>
+                                </div>
+                                    <div class="row cat_subs">
+                                              <div class="col-6">
+                                                     <a href="{% url 'categories-id' category.id %}"
+                                                class="main-cat-header">{{category|lower}}</a>
+                                                </div>
+                                                <div class="col-6">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                </svg>
+                                                {{channel_data.subs|intcomma}}
+
+                                        </div>
+                                    </div>
+                                <div class="row main_cat_description">
+                                    <div class="row">
+                                        {{channel_data.description|truncatechars:150}}
+                                            <a class="tgm_link" href="{% url 'channel-id' channel_data.id %}">&nbsp;подробнее>></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor%}
+
+
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    <h2>Другие категории</h2>
+                    </div>
+                </div>
+                <div class="row">
+
+                        {% for cat in all_categories %}
+                            <div class="channel-cat-header col-6 allcenter">
+                                <a href="{% url 'categories-id' cat.id %}"> {{cat.name}}</a>
+                            </div>
+                        {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+</div>
+
+
+{% endblock %}
