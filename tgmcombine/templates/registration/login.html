@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block maincontent %}
+
+<h1> Авторизация</h1>
+{% if not user.is_authenticated %}
+    <form action="{% url 'login' %}" method="post" >
+        {% if form.error %}
+            {{form.errors.error}}
+        {% endif%}
+        {{ form }}
+        {%csrf_token%}
+        <button class="btn btn-success" type="submit">Login</button>
+        <br>
+        <a href="{% url 'password_reset' %}"> Сбросить пароль</a>
+    </form>
+
+
+{% else %}
+ {{user}} вы авторизованы, <a href="{% url 'logout' %}">разлогиниться></a>
+{% endif %}
+
+{% endblock %}

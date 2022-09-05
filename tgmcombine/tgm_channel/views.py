@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import generics
 from django.db.models import Q
 import time
 import datetime
@@ -8,20 +9,21 @@ from .models import CatName
 from .models import TgmChannel
 from .models import CategoriesMatch
 from .forms import ChannelForm
-
+from .serializers import ChannelSerializer
 
 '''
 главнвая страница
 '''
-def main_page(request):
 
-#   Достаем все категории
+
+def main_page(request):
+    #   Достаем все категории
     categories_name = CatName.objects.all()
 
-#
-#   формируем список с 6 каналами из каждой категории,
-#   а также считаем сколько в каждой категории каналов.
-#
+    #
+    #   формируем список с 6 каналами из каждой категории,
+    #   а также считаем сколько в каждой категории каналов.
+    #
     cats = list()
     for cat in categories_name:
         channels = TgmChannel.objects.filter(id__in=CategoriesMatch.objects.filter(name_id=cat.id)
@@ -35,6 +37,7 @@ def main_page(request):
     return render(request, './main_page.html', {'cats': cats,
                                                 })
 
+
 #
 # Категории каналов и пагинация
 #
@@ -47,10 +50,12 @@ def category_page(request, category_id):
     page_channels = paginator.get_page(page_number)
 
     return render(request, './category_page.html', {
-                                                    'meta_data': category.meta_data,
-                                                    'category': category,
-                                                    'channels': page_channels,
-                                                })
+        'meta_data': category.meta_data,
+        'category': category,
+        'channels': page_channels,
+    })
+
+
 #
 # Cтраница канала
 #
@@ -60,12 +65,13 @@ def channel_page(request, channel_id):
     channel = TgmChannel.objects.get(pk=channel_id)
     category = CatName.objects.get(pk=CategoriesMatch.objects.get(pk=channel_id).name_id_id)
 
-    return render(request, './channel_page.html', { 'meta_data': channel.meta_data,
-                                                    'category': category,
-                                                    'channel': channel,
-                                                    'all_categories':categories_name,
-                                                    'similarchannels': channel.similar_channels,
-                                                })
+    return render(request, './channel_page.html', {'meta_data': channel.meta_data,
+                                                   'category': category,
+                                                   'channel': channel,
+                                                   'all_categories': categories_name,
+                                                   'similarchannels': channel.similar_channels,
+                                                   })
+
 
 #
 # страница канала
@@ -90,13 +96,19 @@ def add_channel(request):
 
     return render(request, './add_channel_page.html', data)
 
+
 def update_data(request):
     tgm_channel.models.assign_cat()
 
     return render(request, './test_page.html', {
-                                                })
+    })
+
 
 def about(request):
     return render(request, './about_page.html', {
-                                                })
+    })
 
+
+class ChannelAPIView(generics.ListAPIView):
+    queryset = TgmChannel.objects.all()[0:10]
+    serializer_class = ChannelSerializer
